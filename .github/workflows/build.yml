@@ -1,0 +1,36 @@
+name: Build LEDSpicer
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y build-essential pkg-config libtool libtinyxml2-dev libusb-1.0-0-dev libpthread-stubs0-dev libpulse-dev
+
+      - name: Configure LEDSpicer
+        run: |
+          cd LEDSpicer
+          sudo sh autogen.sh
+          ./configure --enable-ultimateio --enable-ledwiz32 --enable-pacdrive --enable-alsaaudio
+
+      - name: Compile LEDSpicer
+        run: |
+          cd LEDSpicer
+          make clean
+          make -j5
+
+      - name: Install LEDSpicer
+        run: |
+          cd LEDSpicer
+          sudo make install
