@@ -25,11 +25,5 @@ jobs:
 
       - name: Compile LEDSpicer
         run: |
-          cd LEDSpicer
           make clean
           make -j5
-
-      - name: Install LEDSpicer
-        run: |
-          cd LEDSpicer
-          sudo make install
