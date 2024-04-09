@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install -y build-essential pkg-config libtool libtinyxml2-dev libusb-1.0-0-dev libpthread-stubs0-dev libpulse-dev
+          sudo apt install -y build-essential pkg-config libtool libtinyxml2-dev libusb-1.0-0-dev libpthread-stubs0-dev libpulse-dev libasound2-dev
 
       - name: Configure LEDSpicer
         run: |
