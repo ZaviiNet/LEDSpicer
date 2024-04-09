@@ -20,7 +20,6 @@ jobs:
 
       - name: Configure LEDSpicer
         run: |
-          cd LEDSpicer
           sudo sh autogen.sh
           ./configure --enable-ultimateio --enable-ledwiz32 --enable-pacdrive --enable-alsaaudio
 
