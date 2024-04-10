@@ -1,4 +1,4 @@
-name: Build LEDSpicer
+name: Package
 
 on:
   push:
@@ -27,3 +27,13 @@ jobs:
         run: |
           make clean
           make -j5
+          
+      - name: check packages and move locally
+        run: mkdir pkg; sudo find /tmp/project -name '*.deb' -exec mv {} pkg \;
+        
+      - name: Upload the artifacts
+        uses: skx/github-action-publish-binaries@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: 'pkg/*.deb'
