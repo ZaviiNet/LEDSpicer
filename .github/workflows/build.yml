@@ -26,15 +26,4 @@ jobs:
       - name: Compile LEDSpicer
         run: |
           make clean
-          make -j5      
-        
-      - name: Install LEDSpicer
-        run: |
-          mkdir ../build
-          sudo make install DESTDIR=../build
-
-      - name: Create releases folder
-        run: mkdir -p releases
-
-      - name: Copy compiled files to releases folder
-        run: cp -r build/* releases/
+          make -j5
